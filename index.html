@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberHash & Visual Explainer — MD5, SHA-1, SHA-256, SHA-512</title>
+  <meta name="description" content="Instant real-time cryptographic hash generator and beginner-to-advanced visual explainer for MD5, SHA-1, SHA-256, and SHA-512." />
+
+  <!-- Google Fonts: Outfit, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .all-hashes-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+      margin-top: 1rem;
+    }
+    @media (min-width: 768px) {
+      .all-hashes-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .hash-preview-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .hash-preview-card:hover {
+      border-color: rgba(0, 210, 255, 0.3);
+      background: rgba(15, 23, 42, 0.85);
+    }
+    .hash-preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .hash-preview-title {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .hash-preview-val {
+      font-size: 0.82rem;
+      word-break: break-all;
+      color: #cbd5e1;
+      line-height: 1.4;
+      user-select: all;
+    }
+    .explainer-nav {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-top: 1.25rem;
+    }
+    .nav-tab-btn.active {
+      background: linear-gradient(135deg, rgba(0, 210, 255, 0.25), rgba(168, 85, 247, 0.3));
+      border-color: var(--accent-cyan);
+      color: #fff;
+      box-shadow: 0 0 12px var(--accent-cyan-glow);
+    }
+  </style>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Top Header -->
+    <header class="app-header glass-panel">
+      <div class="header-left">
+        <div class="logo-mark">
+          <span class="logo-icon">⚡</span>
+        </div>
+        <div>
+          <h1 class="app-title">Crypto <span class="gradient-text">Hash Engine & Explainer</span></h1>
+          <p class="app-tagline">Real-time bit-accurate converter & easy-to-understand visual explainer</p>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <!-- Algorithm Selector -->
+        <div class="algo-selector-group" role="tablist" aria-label="Algorithm Selector">
+          <button class="algo-selector-btn" data-algo="MD5" id="algo-btn-md5">
+            <span class="algo-name">MD5</span>
+            <span class="algo-sub font-mono">128-bit • 64 Rds</span>
+          </button>
+          <button class="algo-selector-btn" data-algo="SHA-1" id="algo-btn-sha1">
+            <span class="algo-name">SHA-1</span>
+            <span class="algo-sub font-mono">160-bit • 80 Rds</span>
+          </button>
+          <button class="algo-selector-btn active" data-algo="SHA-256" id="algo-btn-sha256">
+            <span class="algo-name">SHA-256</span>
+            <span class="algo-sub font-mono">256-bit • 64 Rds</span>
+          </button>
+          <button class="algo-selector-btn" data-algo="SHA-512" id="algo-btn-sha512">
+            <span class="algo-name">SHA-512</span>
+            <span class="algo-sub font-mono">512-bit • 80 Rds</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Input & Digest Card -->
+    <section class="input-digest-card glass-panel">
+      <div class="input-column">
+        <div class="input-header-row">
+          <label for="main-text-input" class="input-label font-bold">
+            <span>📝 Input Plaintext</span>
+          </label>
+          <div class="preset-group">
+            <span class="preset-label">Presets:</span>
+            <button class="preset-btn" data-preset="empty">Empty</button>
+            <button class="preset-btn" data-preset="abc">"abc"</button>
+            <button class="preset-btn" data-preset="fox">"The quick brown fox..."</button>
+            <button class="preset-btn" data-preset="bitcoin">Bitcoin Block</button>
+            <label for="file-upload-input" class="file-upload-label" title="Upload custom file">
+              📁 File
+              <input type="file" id="file-upload-input" style="display: none;" />
+            </label>
+          </div>
+        </div>
+        <textarea id="main-text-input" class="main-input-textarea font-mono" rows="3" placeholder="Type any plain text (e.g. 'hey') to see how the recipe works..."></textarea>
+      </div>
+
+      <div class="digest-column">
+        <div class="digest-header-row">
+          <span class="digest-label font-bold">Output Hash Digest:</span>
+          <div class="digest-badges">
+            <span id="digest-len-badge" class="badge badge-cyan font-mono">256-bit (32 Bytes)</span>
+            <span id="block-count-badge" class="badge badge-purple font-mono">1 Block (64 Bytes)</span>
+            <span id="calc-time-badge" class="badge badge-slate font-mono">0.05 ms</span>
+          </div>
+        </div>
+        <div class="digest-output-box" style="display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
+          <div id="digest-hex-value" class="digest-hex font-mono text-cyan" style="word-break: break-all; flex-grow: 1;">d7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e592</div>
+          <button id="btn-copy-hash" class="btn btn-sm btn-cyan" title="Copy digest to clipboard">📋 Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Simultaneous All-Hashes Comparison Section -->
+    <section class="glass-panel" style="padding: 1.25rem;">
+      <h2 style="font-size: 1.05rem; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 0.5rem;">
+        <span>⚡ Parallel Multi-Algorithm Hash Matrix</span>
+        <span class="badge badge-cyan font-mono" style="font-size: 0.75rem;">Live Real-Time</span>
+      </h2>
+      <p style="font-size: 0.83rem; color: var(--text-muted);">
+        All 4 industry hash standards generated simultaneously from your input:
+      </p>
+
+      <div class="all-hashes-grid">
+        <!-- MD5 Preview -->
+        <div class="hash-preview-card">
+          <div class="hash-preview-header">
+            <span class="hash-preview-title text-amber">MD5 (128-bit)</span>
+            <button class="btn btn-xs btn-slate" onclick="navigator.clipboard.writeText(document.getElementById('preview-md5').textContent.trim()); this.textContent='Copied!'; setTimeout(()=>this.textContent='Copy', 1200);">Copy</button>
+          </div>
+          <div id="preview-md5" class="hash-preview-val font-mono"></div>
+        </div>
+
+        <!-- SHA-1 Preview -->
+        <div class="hash-preview-card">
+          <div class="hash-preview-header">
+            <span class="hash-preview-title text-purple">SHA-1 (160-bit)</span>
+            <button class="btn btn-xs btn-slate" onclick="navigator.clipboard.writeText(document.getElementById('preview-sha1').textContent.trim()); this.textContent='Copied!'; setTimeout(()=>this.textContent='Copy', 1200);">Copy</button>
+          </div>
+          <div id="preview-sha1" class="hash-preview-val font-mono"></div>
+        </div>
+
+        <!-- SHA-256 Preview -->
+        <div class="hash-preview-card">
+          <div class="hash-preview-header">
+            <span class="hash-preview-title text-cyan">SHA-256 (256-bit)</span>
+            <button class="btn btn-xs btn-slate" onclick="navigator.clipboard.writeText(document.getElementById('preview-sha256').textContent.trim()); this.textContent='Copied!'; setTimeout(()=>this.textContent='Copy', 1200);">Copy</button>
+          </div>
+          <div id="preview-sha256" class="hash-preview-val font-mono"></div>
+        </div>
+
+        <!-- SHA-512 Preview -->
+        <div class="hash-preview-card">
+          <div class="hash-preview-header">
+            <span class="hash-preview-title text-emerald">SHA-512 (512-bit)</span>
+            <button class="btn btn-xs btn-slate" onclick="navigator.clipboard.writeText(document.getElementById('preview-sha512').textContent.trim()); this.textContent='Copied!'; setTimeout(()=>this.textContent='Copy', 1200);">Copy</button>
+          </div>
+          <div id="preview-sha512" class="hash-preview-val font-mono"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Explainer Navigation Bar -->
+    <nav class="explainer-nav glass-panel" style="padding: 0.5rem;" aria-label="Explainer Tabs">
+      <button class="nav-tab-btn active" data-tab="story" id="tab-btn-story">
+        <span class="tab-icon">💡</span>
+        <span>1. Story Mode: How It Works (For Everyone)</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="avalanche" id="tab-btn-avalanche">
+        <span class="tab-icon">🌊</span>
+        <span>2. Live Avalanche Lab (1 Tiny Change)</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="workflow" id="tab-btn-workflow">
+        <span class="tab-icon">🔬</span>
+        <span>3. Technical Pipeline (Bits & Bytes)</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="rounds" id="tab-btn-rounds">
+        <span class="tab-icon">⚡</span>
+        <span>4. The 64-Round Blender Stepper</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="security" id="tab-btn-security">
+        <span class="tab-icon">🛡️</span>
+        <span>5. Real-World Uses & Security</span>
+      </button>
+    </nav>
+
+    <!-- Dynamic Explainer Workspace Content Container -->
+    <main id="dynamic-tab-content">
+      <!-- Injected dynamically by hash_tool.js -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer glass-panel">
+      <div class="footer-left font-mono text-xs text-slate-400">
+        CyberHash • 100% Bit-Accurate Pure JavaScript Math (RFC 1321 & FIPS 180-4)
+      </div>
+      <div class="footer-right font-mono text-xs text-slate-400">
+        Runs 100% Offline & Locally • Zero External Dependencies
+      </div>
+    </footer>
+  </div>
+
+  <!-- Standard standalone script - works directly with file:// and http:// -->
+  <script src="js/hash_tool.js"></script>
+</body>
+</html>
