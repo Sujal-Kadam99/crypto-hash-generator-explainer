@@ -6,7 +6,7 @@
 
 ## Overview
 
-Crypto Hash Generator & Explainer is a 100% offline, local, bit-accurate cryptographic hash engine and visual explainer. It computes MD5, SHA-1, SHA-256, and SHA-512 hashes instantly using pure JavaScript, without any external dependencies. It's designed to help developers and students intuitively understand how hashing functions, the avalanche effect, and the block-round math work under the hood.
+Crypto Hash Generator & Explainer is a local, bit-accurate cryptographic hash engine and visual explainer. It computes MD5, SHA-1, SHA-256, and SHA-512 hashes instantly using pure JavaScript, without any external dependencies. It's designed to help developers and students intuitively understand how hashing functions, the avalanche effect, and the block-round math work under the hood.
 
 > ⚠️ **EDUCATIONAL AND AUTHORIZED USE ONLY**
 > This tool provides pure-JavaScript implementations of hashing algorithms strictly for educational and visualization purposes. 
@@ -20,14 +20,14 @@ Crypto Hash Generator & Explainer is a 100% offline, local, bit-accurate cryptog
 - **Dependencies**: None. Zero external packages.
 
 ## Architecture
-Crypto Hash Generator & Explainer uses a monolithic, zero-dependency architecture for the main application (`hash_tool.js`), which contains bitwise implementations of all cryptographic algorithms, alongside DOM manipulation logic to render the visual explainer tabs dynamically. It runs fully offline in the browser. A tiny Node.js static server (`server.js`) is provided for local development.
+Crypto Hash Generator & Explainer uses a monolithic, zero-dependency architecture for the main application (`hash_tool.js`), which contains bitwise implementations of all cryptographic algorithms, alongside DOM manipulation logic to render the visual explainer tabs dynamically. It runs locally in the browser. A tiny Node.js static server (`server.js`) is provided for local development.
 
 ## Quick Start
 
 You can use this tool in three ways:
 
 1. **Live Demo:** Visit [https://sujal-kadam99.github.io/crypto-hash-generator-explainer/](https://sujal-kadam99.github.io/crypto-hash-generator-explainer/)
-2. **Download & Run Offline:** Download the ZIP from the [Releases](https://github.com/Sujal-Kadam99/crypto-hash-generator-explainer/releases) page, unzip it, and double-click `index.html`. No installation or internet connection required.
+2. **Download & Run Locally:** Download the ZIP from the [Releases](https://github.com/Sujal-Kadam99/crypto-hash-generator-explainer/releases) page, unzip it, and double-click `index.html`. No installation required (note: requires internet connection for Google Fonts).
 3. **Local Development (Node >=22):**
    ```bash
    git clone https://github.com/Sujal-Kadam99/crypto-hash-generator-explainer.git
