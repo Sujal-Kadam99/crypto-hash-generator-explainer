@@ -1,5 +1,5 @@
 /**
- * CyberHash & Non-Tech Friendly Cryptographic Explainer
+ * Crypto Hash Generator & Explainer & Non-Tech Friendly Cryptographic Explainer
  * Self-contained pure JavaScript with 100% bit-accurate math, trace logging & visualizer.
  * Compatible with offline file:// and http:// environments.
  */

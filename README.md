@@ -1,12 +1,12 @@
-# CyberHash
+# Crypto Hash Generator & Explainer
 
 **An educational, real-time cryptographic hash generator and visual explainer.**
 
-![CyberHash Screenshot Placeholder](placeholder-screenshot.png)
+![Crypto Hash Generator & Explainer Screenshot Placeholder](placeholder-screenshot.png)
 
 ## Overview
 
-CyberHash is a 100% offline, local, bit-accurate cryptographic hash engine and visual explainer. It computes MD5, SHA-1, SHA-256, and SHA-512 hashes instantly using pure JavaScript, without any external dependencies. It's designed to help developers and students intuitively understand how hashing functions, the avalanche effect, and the block-round math work under the hood.
+Crypto Hash Generator & Explainer is a 100% offline, local, bit-accurate cryptographic hash engine and visual explainer. It computes MD5, SHA-1, SHA-256, and SHA-512 hashes instantly using pure JavaScript, without any external dependencies. It's designed to help developers and students intuitively understand how hashing functions, the avalanche effect, and the block-round math work under the hood.
 
 > ⚠️ **EDUCATIONAL AND AUTHORIZED USE ONLY**
 > This tool provides pure-JavaScript implementations of hashing algorithms strictly for educational and visualization purposes. 
@@ -20,7 +20,7 @@ CyberHash is a 100% offline, local, bit-accurate cryptographic hash engine and v
 - **Dependencies**: None. Zero external packages.
 
 ## Architecture
-CyberHash uses a monolithic, zero-dependency architecture for the main application (`hash_tool.js`), which contains bitwise implementations of all cryptographic algorithms, alongside DOM manipulation logic to render the visual explainer tabs dynamically. It runs fully offline in the browser. A tiny Node.js static server (`server.js`) is provided for local development.
+Crypto Hash Generator & Explainer uses a monolithic, zero-dependency architecture for the main application (`hash_tool.js`), which contains bitwise implementations of all cryptographic algorithms, alongside DOM manipulation logic to render the visual explainer tabs dynamically. It runs fully offline in the browser. A tiny Node.js static server (`server.js`) is provided for local development.
 
 ## Prerequisites
 - **Node.js** (v20.0.0 or higher recommended) for local development server and testing.
@@ -30,8 +30,8 @@ CyberHash uses a monolithic, zero-dependency architecture for the main applicati
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/sujal-kadam99/cyberhash.git
-   cd cyberhash
+   git clone https://github.com/sujal-kadam99/crypto-hash-generator-explainer.git
+   cd crypto-hash-generator-explainer
    ```
 2. Start the local server:
    ```bash
