@@ -2,7 +2,6 @@
 
 **An educational, real-time cryptographic hash generator and visual explainer.**
 
-![Crypto Hash Generator & Explainer Screenshot Placeholder](placeholder-screenshot.png)
 
 ## Overview
 
