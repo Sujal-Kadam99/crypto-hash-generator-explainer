@@ -1,0 +1,29 @@
+{
+  "name": "cyberhash",
+  "version": "1.0.0",
+  "description": "Educational bit-accurate cryptographic hash engine (MD5, SHA-1, SHA-256, SHA-512) and visualizer.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test_vectors.mjs",
+    "lint": "eslint ."
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "keywords": [
+    "crypto",
+    "hash",
+    "sha256",
+    "md5",
+    "sha1",
+    "sha512",
+    "educational"
+  ],
+  "author": "sujal-kadam99",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.57.0"
+  }
+}
