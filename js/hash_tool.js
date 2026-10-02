@@ -651,7 +651,6 @@
   // ==========================================
   function renderStoryMode(container, result, inputText) {
     const { algorithm, digestHex, originalLength } = result;
-    const isSha256 = algorithm === 'SHA-256';
     const sampleText = inputText || 'hey';
     const chars = Array.from(sampleText).slice(0, 10);
 
