@@ -27,7 +27,7 @@ Crypto Hash Generator & Explainer uses a monolithic, zero-dependency architectur
 You can use this tool in three ways:
 
 1. **Live Demo:** Visit [https://sujal-kadam99.github.io/crypto-hash-generator-explainer/](https://sujal-kadam99.github.io/crypto-hash-generator-explainer/)
-2. **Download & Run Locally:** Download the ZIP from the [Releases](https://github.com/Sujal-Kadam99/crypto-hash-generator-explainer/releases) page, unzip it, and double-click `index.html`. No installation required (note: requires internet connection for Google Fonts).
+2. **Download & Run Locally:** Download the ZIP from the [Releases](https://github.com/Sujal-Kadam99/crypto-hash-generator-explainer/releases) page, unzip it, and double-click `index.html`. No installation and no internet required; hashing works offline; Google Fonts load when online and the page falls back to system fonts when offline.
 3. **Local Development (Node >=22):**
    ```bash
    git clone https://github.com/Sujal-Kadam99/crypto-hash-generator-explainer.git
