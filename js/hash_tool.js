@@ -1412,4 +1412,7 @@
     }
   }
 
-})(window);
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { md5: runMD5, sha1: runSHA1, sha256: runSHA256, sha512: runSHA512 };
+  }
+})(typeof window !== 'undefined' ? window : this);
