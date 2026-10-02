@@ -22,24 +22,34 @@ Crypto Hash Generator & Explainer is a 100% offline, local, bit-accurate cryptog
 ## Architecture
 Crypto Hash Generator & Explainer uses a monolithic, zero-dependency architecture for the main application (`hash_tool.js`), which contains bitwise implementations of all cryptographic algorithms, alongside DOM manipulation logic to render the visual explainer tabs dynamically. It runs fully offline in the browser. A tiny Node.js static server (`server.js`) is provided for local development.
 
-## Prerequisites
-- **Node.js** (v20.0.0 or higher recommended) for local development server and testing.
-- A modern web browser.
+## Quick Start
 
-## Install and Run
+You can use this tool in three ways:
 
-1. Clone the repository:
+1. **Live Demo:** Visit [https://sujal-kadam99.github.io/crypto-hash-generator-explainer/](https://sujal-kadam99.github.io/crypto-hash-generator-explainer/)
+2. **Download & Run Offline:** Download the ZIP from the [Releases](https://github.com/Sujal-Kadam99/crypto-hash-generator-explainer/releases) page, unzip it, and double-click `index.html`. No installation or internet connection required.
+3. **Local Development (Node >=22):**
    ```bash
-   git clone https://github.com/sujal-kadam99/crypto-hash-generator-explainer.git
+   git clone https://github.com/Sujal-Kadam99/crypto-hash-generator-explainer.git
    cd crypto-hash-generator-explainer
-   ```
-2. Start the local server:
-   ```bash
    npm start
    ```
-3. Open `http://localhost:5173/` in your browser.
 
-*Note: You can also simply open `index.html` directly in your browser without the server, as it's fully self-contained!*
+### Verify your download
+
+If you downloaded the release ZIP, you can verify its integrity using the provided `SHA256SUMS.txt` file:
+
+**Windows:**
+```powershell
+certutil -hashfile crypto-hash-generator-explainer-vX.Y.Z.zip SHA256
+```
+*(Compare the output with the hash inside `SHA256SUMS.txt`)*
+
+**Linux / macOS:**
+```bash
+sha256sum crypto-hash-generator-explainer-vX.Y.Z.zip
+```
+*(Compare the output with the hash inside `SHA256SUMS.txt`)*
 
 ## Run Tests
 To verify the accuracy of the hashing implementations against Node.js's native C++ crypto module:
